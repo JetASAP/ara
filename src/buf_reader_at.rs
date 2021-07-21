@@ -80,7 +80,7 @@ where
     }
 }
 
-#[async_trait(?Send)]
+#[async_trait]
 impl<R> ReadAt for BufReaderAt<R>
 where
     R: ReadAt,
@@ -407,7 +407,7 @@ mod buf_reader_at_tests {
         data: &'a [u8],
     }
 
-    #[async_trait(?Send)]
+    #[async_trait]
     impl<'a> ReadAt for MemReader<'a> {
         async fn read_at(&self, offset: u64, buf: &mut [u8]) -> io::Result<usize> {
             let offset = offset as usize;

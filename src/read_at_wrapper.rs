@@ -11,7 +11,7 @@ use std::{
 };
 
 /// Can build readers that read starting at a given offset
-#[async_trait(?Send)]
+#[async_trait]
 pub trait GetReaderAt {
     type Reader: AsyncRead + Unpin;
 
@@ -98,7 +98,7 @@ where
     }
 }
 
-#[async_trait(?Send)]
+#[async_trait]
 impl<Source> ReadAt for ReadAtWrapper<Source>
 where
     Source: GetReaderAt,

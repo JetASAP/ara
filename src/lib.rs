@@ -6,7 +6,7 @@ pub mod range_reader;
 pub mod read_at_wrapper;
 
 /// Provides length and asynchronous random access to a resource
-#[async_trait(?Send)]
+#[async_trait]
 pub trait ReadAt {
     /// Read bytes from resource, starting at `offset`, into `buf`
     async fn read_at(&self, offset: u64, buf: &mut [u8]) -> io::Result<usize>;
@@ -41,7 +41,7 @@ pub trait ReadAt {
     }
 }
 
-#[async_trait(?Send)]
+#[async_trait]
 impl<'a, T> ReadAt for &'a T
 where
     T: ReadAt,
@@ -55,7 +55,7 @@ where
     }
 }
 
-#[async_trait(?Send)]
+#[async_trait]
 impl<'a, T> ReadAt for Arc<T>
 where
     T: ReadAt,
@@ -69,7 +69,7 @@ where
     }
 }
 
-#[async_trait(?Send)]
+#[async_trait]
 impl<'a, T> ReadAt for Box<T>
 where
     T: ReadAt,
